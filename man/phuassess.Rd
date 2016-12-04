@@ -106,14 +106,23 @@ and the estimation of the permutation distribution by means of a random sample o
 
 data(hares)
 
+\dontshow{
 ##############################################################################
 ## Second order habitat selection: study area vs home range 
 ## In order to save computation time, only a sample of 5000 permutations
 ## is considered, while the results reported in the paper refer to all the 
-## possible 16.384 permutations.
+## possible 16.384 permutations. The instructions to run the analysis reported
+## in the paper are available in the help page
 
 second_order <- phuassess(hares$PAHR, hares$study_area, hnames=TRUE, 
 exactperm = FALSE, nrperm = 5000)
+}
+\dontrun{
+##############################################################################
+## Second order habitat selection: study area vs home range 
+## All the possible 16.384 permutations are considered
+
+second_order <- phuassess(hares$PAHR, hares$study_area, hnames=TRUE)
 
 ## Overall p-value for the assessment of the hypothesis of proportional
 ## habitat use
@@ -126,35 +135,34 @@ second_order$pvalue.overall
 second_order$ordering
 
 ##############################################################################
-## The following commented examples refer to third order habitat selection: 
-## percentages of radio locations vs home range
+## Third order habitat selection: percentages of radio locations vs home range
 ## All the possible 16.384 permutations are considered
 
 ## Day
-#third_order_day <- phuassess(hares$PAT_day, hares$PAHR, hnames=TRUE)
+third_order_day <- phuassess(hares$PAT_day, hares$PAHR, hnames=TRUE)
 
 ## Overall p-value for the assessment of the hypothesis of proportional
 ## habitat use
-#third_order_day$pvalue.overall
+third_order_day$pvalue.overall
 
 ## Overall p-value does not allow the rejection of the hypothesis of 
 ## proportional habitat use. As the p-value is considerably near the 
 ## critical value of 0.05, instead of mechanistically precluding further 
 ## insights, the marginal tests are also considered.
-#third_order_day$ordering
+third_order_day$ordering
 
 ## Night
-#third_order_night <- phuassess(hares$PAT_night, hares$PAHR, hnames=TRUE)
+third_order_night <- phuassess(hares$PAT_night, hares$PAHR, hnames=TRUE)
 
 ## Overall p-value for the assessment of the hypothesis of proportional 
 ## habitat use.
-#third_order_night$pvalue.overall
+third_order_night$pvalue.overall
 
 ## Overall p-value allows the rejection of the hypothesis of proportional
 ## habitat use. The data frame with the p-values for partial hypotheses and
 ## paired comparisons, together with habitat ordering, can be considered.
-#third_order_night$ordering
-
+third_order_night$ordering
+}
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
